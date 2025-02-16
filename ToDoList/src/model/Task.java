@@ -23,4 +23,9 @@ public class Task {
         // 값이 비어있는 경우(호출하는 곳에서 검사해야하나?)
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }

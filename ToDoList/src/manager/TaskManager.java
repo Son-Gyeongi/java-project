@@ -9,7 +9,11 @@ TaskManager - 할 일 관리 클래스
 할 일 목록을 관리하고 추가/삭제/수정/조회하는 기능 담당
  */
 public class TaskManager {
-    private ArrayList<Task> tasks = new ArrayList<>();
+    private ArrayList<Task> tasks;
+
+    public TaskManager(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
 
     // 할 일 추가
     public void addTask(String description) {
