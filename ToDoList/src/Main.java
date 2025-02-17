@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         // 사용자 입력
         Scanner scanner = new Scanner(System.in);
-        int command = 0; // 번호 선택
+        String command = ""; // 번호 선택
         String description = ""; // 할 일 작성
         // tasks.txt 에서 파일 불러오기
         ArrayList<Task> tasks = TaskFileManager.loadFile(); // 할 일 리스트
@@ -26,38 +26,39 @@ public class Main {
             System.out.println("6. 프로그램 종료");
 
             System.out.print("수행할 작업을 번호로 입력해 주세요. >> ");
-            command = scanner.nextInt(); // 사용자가 메뉴 선택
-            scanner.nextLine(); // 개행 문자 버퍼 비우기
+            command = String.valueOf(scanner.nextLine()); // 사용자가 메뉴 선택
 
             switch (command) {
-                case 1:
-                    System.out.print("추가할 일을 입력해주세요. >> ");
+                case "1":
+                    System.out.print("추가할 일을 입력해주세요.(다시 메뉴를 선택하고 싶으면 m 입력) >> ");
                     description = scanner.nextLine();
-                    taskManager.addTask(description);
+                    if (!description.equalsIgnoreCase("m")) {
+                        taskManager.addTask(description);
+                    }
                     break;
-                case 2:
+                case "2":
                     taskManager.displayTasks();
                     System.out.print("삭제할 번호를 입력해주세요. >> ");
-                    command = scanner.nextInt();
-                    scanner.nextLine(); // 개행 문자 버퍼 비우기
-                    taskManager.removeTask(command - 1);
+                    command = String.valueOf(scanner.nextLine());
+                    taskManager.removeTask(Integer.parseInt(command) - 1);
                     break;
-                case 3:
+                case "3":
+                    taskManager.displayTasks();
                     System.out.print("수정할 번호를 입력해주세요. >> ");
-                    command = scanner.nextInt();
-                    scanner.nextLine(); // 개행 문자 버퍼 비우기
+                    command = String.valueOf(scanner.nextLine());
                     System.out.print("수정할 일을 입력해주세요. >> ");
                     description = scanner.nextLine();
-                    taskManager.updateTask(command - 1, description);
+                    taskManager.updateTask(Integer.parseInt(command) - 1, description);
                     break;
-                case 4:
+                case "4":
                     taskManager.displayTasks();
                     break;
-                case 5:
+                case "5":
                     TaskFileManager.saveFile(tasks);
                     System.out.println("저장이 완료되었습니다.");
                     break;
-                case 6:
+                case "6":
+                    // TODO 저장하라는 메세지 주기
                     System.out.println("작업이 종료되었습니다.");
                     return;
                 default:

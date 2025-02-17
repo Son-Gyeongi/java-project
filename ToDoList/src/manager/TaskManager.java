@@ -39,6 +39,9 @@ public class TaskManager {
 
     // 할 일 목록 조회
     public void displayTasks() {
+        System.out.println("----- 리스트 목록 -----");
+        if (tasks.isEmpty()) System.out.println("현재 등록된 할 일이 없습니다.");
+
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println((i + 1) + " : " + tasks.get(i));
         }
