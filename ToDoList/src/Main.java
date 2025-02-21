@@ -32,8 +32,12 @@ public class Main {
                 case "1":
                     System.out.print("추가할 일을 입력해주세요.(다시 메뉴를 선택하고 싶으면 m 입력) >> ");
                     description = scanner.nextLine();
-                    if (!description.equalsIgnoreCase("m")) {
-                        taskManager.addTask(description);
+                    try {
+                        if (!description.equalsIgnoreCase("m")) {
+                            taskManager.addTask(description.trim());
+                        }
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("추가할 일을 입력해주세요.");
                     }
                     break;
                 case "2":
@@ -48,7 +52,11 @@ public class Main {
                     command = String.valueOf(scanner.nextLine());
                     System.out.print("수정할 일을 입력해주세요. >> ");
                     description = scanner.nextLine();
-                    taskManager.updateTask(Integer.parseInt(command) - 1, description);
+                    try {
+                        taskManager.updateTask(Integer.parseInt(command) - 1, description.trim());
+                    } catch (IllegalArgumentException e) {
+                        System.out.println("수정할 일을 입력해주세요.");
+                    }
                     break;
                 case "4":
                     taskManager.displayTasks();

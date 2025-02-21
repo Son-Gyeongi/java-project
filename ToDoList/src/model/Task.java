@@ -8,9 +8,13 @@ public class Task {
     private String description; // 할 일 데이터
 
     public Task() {
+        throw new IllegalArgumentException("할 일을 입력해주세요.");
     }
 
     public Task(String description) {
+        // 입력값 description 유효성 검사 - 값이 비어있는 경우
+        if (description.isEmpty())
+            throw new IllegalArgumentException();
         this.description = description;
     }
 
@@ -19,8 +23,9 @@ public class Task {
     }
 
     public void updateDescription(String description) {
-        // TODO 여기서 입력값 description 유효성 검사할 게 있나?
-        // 값이 비어있는 경우(호출하는 곳에서 검사해야하나?)
+        // 입력값 description 유효성 검사 - 값이 비어있는 경우
+        if (description.isEmpty())
+            throw new IllegalArgumentException();
         this.description = description;
     }
 

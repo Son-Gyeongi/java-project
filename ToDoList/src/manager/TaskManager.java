@@ -17,7 +17,7 @@ public class TaskManager {
 
     // 할 일 추가
     public void addTask(String description) {
-        // TODO 값이 비어있는 경우(호출하는 곳에서 검사해야하나?) 아니면 생성자에서?
+        // 생성자에서 description 유효성 검사한다.
         tasks.add(new Task(description));
     }
 
